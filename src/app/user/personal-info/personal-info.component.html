@@ -1,0 +1,295 @@
+<section class="page-contain">
+  <section class="con1">
+    <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#BasicInfoBackdrop">
+      <h3>Basic Info</h3>
+      <img src={{user.avatar}} class="card__image" alt="" />
+      <ul>
+        <h4>{{user.firstName}} <div *ngIf="user.middleName != null">{{user.middleName}}.</div> {{user.lastName}}</h4>
+        <li *ngIf="user.preferredName != null">Preferred Name: {{user.preferredName}}</li>
+        <li>Date of Birth: {{user.DOB}}</li>
+        <li>Age: {{age}}</li>
+        <li>Gender: {{user.gender}}</li>
+        <li type=password>SSN: {{user.ssn}}</li>
+        <li>Driver License: {{user.driverLicense}}</li>
+        <li>Driver License exp: {{user.driverLicense_ExpirationDate}}</li>
+      </ul>
+      <span class="link-text">
+        Edit
+        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+        </svg>
+      </span>
+    </a>
+  </section>
+  <section>
+    <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#AddressBackdrop">
+      <h3>Address</h3>
+      <ul>
+        <li>Primary Address: {{user.addresses[0].addressline1}}, {{user.addresses[0].addressline2}},
+            {{user.addresses[0].city}}, {{user.addresses[0].state}}, {{user.addresses[0].zipcode}}</li>
+        <div *ngIf="user.addresses[1] != null">
+          <li>
+            Secondary Address: {{user.addresses[1].addressline1}}, {{user.addresses[1].addressline2}},
+            {{user.addresses[1].city}}, {{user.addresses[1].state}}, {{user.addresses[1].zipcode}}
+          </li>
+        </div>
+      </ul>
+      <span class="link-text">
+        Edit
+        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+        </svg>
+      </span>
+    </a>
+    <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#ContactBackdrop">
+      <h3>Contact</h3>
+      <ul>
+        <li>Personal Email: {{user.email}}</li>
+        <li>CellPhone: {{user.cellphone}}</li>
+        <li>Work Phone: {{user.alternatePhone}}</li>
+      </ul>
+      <span class="link-text">
+        Edit
+        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+        </svg>
+      </span>
+    </a>
+  </section>
+  <section>
+    <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#EmploymentBackDrop">
+      <h3>Employment</h3>
+      <ul>
+        <li>Work Authorization: {{user.employment.workAuthorization}} </li>
+        <li>From {{user.employment.authorizationStartDate}} till {{user.employment.authorizationEndDate}}</li>
+        <li>Employment Title: {{user.employment.title}}</li>
+        <li>From {{user.employment.employmentStartDate}} till {{user.employment.employmentEndDate}}</li>
+      </ul>
+      <span class="link-text">
+        Edit
+        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+        </svg>
+      </span>
+    </a>
+      <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#EmergencyContactBackdrop">
+        <h3>Emergency Contact</h3>
+        <div *ngFor="let n of em">
+          <ul *ngIf="n.emergency">
+            <li>Full Name: {{n.FirstName}}</li>
+            <li>Phone: {{n.cellphone}}</li>
+            <li>Address: {{n.address.addressline1}},{{n.address.addressline2}},
+              {{n.address.city}}, {{n.address.state}}, {{n.address.zipcode}}</li>
+          </ul>
+        </div>
+        <span class="link-text">
+          Edit
+          <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+          </svg>
+        </span>
+      </a>
+  </section>
+  <section>
+    <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#DocBackdrop">
+      <div *ngFor="let d of doc">
+        <h3>Documents</h3>
+        <ul>
+          <li>Icon: {{d.name}}</li>
+          <li>Mame: {{d.icon}}</li>
+        </ul>
+    </div>
+      <span class="link-text">
+        Edit
+        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
+        </svg>
+      </span>
+    </a>
+  </section>
+</section>
+
+<div class="modal fade" id="BasicInfoBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Basic Info</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="basicForm" class="card-form" (ngSubmit)='submitBasic(basicForm)'>
+        <div class="modal-body">
+          <div class="input">
+            <input type="text" class="input-field" formControlName="firstName" required/>
+            <label class="input-label">First Name</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="lastName" required/>
+            <label class="input-label">Last Name</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="middleName"/>
+            <label class="input-label">middleName</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="preferredName"/>
+            <label class="input-label">preferredName</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="avatar"required/>
+            <label class="input-label">Avatar Link</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="DOB" required/>
+            <label class="input-label">Date of Birth (MM-DD-YY)</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="gender" required/>
+            <label class="input-label">Gender</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="ssn" required/>
+            <label class="input-label">SSN</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="driverLicense"/>
+            <label class="input-label">Driver License Number</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="driverLicense_ExpirationDate"/>
+            <label class="input-label">Driver License Expiration Date</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="email" required/>
+            <label class="input-label">Email</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="cellphone" required/>
+            <label class="input-label">CellPhone</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="alternatePhone"/>
+            <label class="input-label">Alternate Phone</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="AddressBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Addresses</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form [formGroup]="addressForm" class="card-form" (ngSubmit)="submitAddress(addressForm)">
+        <div class="modal-body">
+          <div *ngFor="let address of getAddresses().controls; let i = index">
+            <p>Address {{i + 1}}</p>
+            <div class="input">
+              <input type="text" class="input-field" required/>
+              <label class="input-label">Line 1</label>
+            </div>
+            <div class="input">
+              <input type="text" class="input-field" formControlName="addressline2" required/>
+              <label class="input-label">Line 2</label>
+            </div>
+            <div class="input">
+              <input type="password" class="input-field" formControlName="city" required/>
+              <label class="input-label">City</label>
+            </div>
+            <div class="input">
+              <input type="password" class="input-field" formControlName="state" required/>
+              <label class="input-label">State</label>
+            </div>
+            <div class="input">
+              <input type="password" class="input-field" formControlName="zipcode" required/>
+              <label class="input-label">Zipcode</label>
+            </div>
+            <hr class='rounded'>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="ContactBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Contact</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="EmploymentBackDrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Employment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="EmergencyContactBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Emergency Contact</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="DocBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Edit Documents</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save Changes</button>
+      </div>
+    </div>
+  </div>
+</div>

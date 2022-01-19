@@ -18,6 +18,24 @@ export class HttpServiceService {
     });
   }
 
+  getProfiles(): Observable<any> {
+    return this.http.get(this.endPoint + 'employee-profile', {
+      headers :{
+        'Allow-Cross-Origin-Origin0': '*'
+      },
+      responseType: 'text'
+    });
+  }
+
+  getProfile(id: any): Observable<any> {
+    return this.http.get(this.endPoint + 'employee-info/' + id, {
+      headers :{
+        'Allow-Cross-Origin-Origin0': '*'
+      },
+      responseType: 'text'
+    })
+  }
+
   getError(): Observable<any> {
     return this.http.get(this.endPoint + 'error', {
       headers: {

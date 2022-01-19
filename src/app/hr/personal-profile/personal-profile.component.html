@@ -1,0 +1,22 @@
+<div class="container">
+  <h2>Personal Profiles <small>summary</small></h2>
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">Employee Number</div>
+      <div class="col col-2">Legal Full Name</div>
+      <div class="col col-3">SSN</div>
+      <div class="col col-4">Starting Date</div>
+      <div class="col col-5">Visa Status</div>
+    </li>
+    <div *ngFor="let p of profiles; let i = index;">
+      <li class="table-row">
+        <div class="col col-1" data-label="Employee Number">{{p.id + 1}} / {{profiles.length}}</div>
+        <div class="col col-2" data-label="Legal Full Name">{{p.name}}</div>
+        <div class="col col-3" data-label="SSN">{{p.ssn}}</div>
+        <div class="col col-4" data-label="Starting Date">{{p.startingDate}}</div>
+        <div class="col col-5" data-label="Visa Status">{{p.visaStatus}}</div>
+        <a [routerLink]="[p.id]" routerLinkActive="active"></a>
+      </li>
+    </div>
+  </ul>
+</div>

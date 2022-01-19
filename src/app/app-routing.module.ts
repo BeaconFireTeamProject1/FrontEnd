@@ -1,15 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 const routes: Routes = [
-  { path: "", component: HomePageComponent},
-  { path: 'user-home', component: HomePageComponent},
-  { path: 'personal-info', component: PersonalInfoComponent },
+  { path: "user",
+    loadChildren: () => import('./user/user.module').then(m => m.UserModule),
+    data: {preload: true}},
   { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(
+      routes,
+      {
+        enableTracing: true, // <-- debugging purposes only
+      }
+    )
+  ],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
