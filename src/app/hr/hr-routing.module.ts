@@ -28,6 +28,9 @@ const routes: Routes = [
       },
       {
         path: 'hire', component: HireComponent
+      },
+      {
+        path: 'home', redirectTo: '/hr'
       }
     ]
   }

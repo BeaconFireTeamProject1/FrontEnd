@@ -1,6 +1,6 @@
 <section class="page-contain">
   <section class="con1">
-    <a href="#" class="data-card">
+    <div class="data-card">
       <h3>Basic Info</h3>
       <img src={{user.avatar}} class="card__image" alt="" />
       <ul>
@@ -13,16 +13,10 @@
         <li>Driver License: {{user.driverLicense}}</li>
         <li>Driver License exp: {{user.driverLicense_ExpirationDate}}</li>
       </ul>
-      <span class="link-text">
-        Edit
-        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
-        </svg>
-      </span>
-    </a>
+    </div>
   </section>
   <section>
-    <a href="#" class="data-card">
+    <div class="data-card">
       <h3>Address</h3>
       <ul>
         <li>Primary Address: {{user.addresses[0].addressline1}}, {{user.addresses[0].addressline2}},
@@ -34,77 +28,45 @@
           </li>
         </div>
       </ul>
-      <span class="link-text">
-        Edit
-        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
-        </svg>
-      </span>
-    </a>
-    <a href="#" class="data-card">
+    </div>
+    <div class="data-card">
       <h3>Contact</h3>
       <ul>
         <li>Personal Email: {{user.email}}</li>
         <li>CellPhone: {{user.cellphone}}</li>
         <li>Work Phone: {{user.alternatePhone}}</li>
       </ul>
-      <span class="link-text">
-        Edit
-        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
-        </svg>
-      </span>
-    </a>
+    </div>
   </section>
   <section>
-    <a href="#" class="data-card">
+    <div class="data-card">
       <h3>Employment</h3>
       <ul>
-        <li>Work Authorization: {{user.employment.VisaStatusID}} </li>
-        <li>From {{user.employment.VisaStartDate}} till {{user.employment.VisaEndDate}}</li>
+        <li>Work Authorization: {{user.employment.workAuthorization}} </li>
+        <li>From {{user.employment.authorizationStartDate}} till {{user.employment.authorizationEndDate}}</li>
         <li>Employment Title: {{user.employment.title}}</li>
-        <li>From {{user.employment.startDate}} till {{user.employment.endDate}}</li>
+        <li>From {{user.employment.employmentStartDate}} till {{user.employment.employmentEndDate}}</li>
       </ul>
-      <span class="link-text">
-        Edit
-        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
-        </svg>
-      </span>
-    </a>
-      <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#EmergencyContactBackdrop">
+    </div>
+    <div class="data-card">
         <h3>Emergency Contact</h3>
-        <div *ngFor="let n of user.contact">
-          <ul *ngIf="n.emergency">
-            <li>Full Name: {{n.FirstName}}</li>
-            <li>Phone: {{n.cellphone}}</li>
-            <li>Address: {{n.address.addressline1}},{{n.address.addressline2}},
-              {{n.address.city}}, {{n.address.state}}, {{n.address.zipcode}}</li>
-          </ul>
-        </div>
-        <span class="link-text">
-          Edit
-          <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
-          </svg>
-        </span>
-      </a>
+        <ul>
+          <li>Full Name: {{user.contact.name}}</li>
+          <li>Phone: {{user.contact.phone}}</li>
+          <li>Address: {{user.contact.address}}</li>
+          <li>Relationship: {{user.contact.relationship}}</li>
+        </ul>
+      </div>
   </section>
   <section>
-    <a href="#" class="data-card">
+    <div class="data-card">
       <div *ngFor="let d of user.documents">
         <h3>Documents</h3>
         <ul>
           <li>Icon: {{d.name}}</li>
           <li>Mame: {{d.icon}}</li>
         </ul>
+      </div>
     </div>
-      <span class="link-text">
-        Edit
-        <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M17.8631 0.929124L24.2271 7.29308C24.6176 7.68361 24.6176 8.31677 24.2271 8.7073L17.8631 15.0713C17.4726 15.4618 16.8394 15.4618 16.4489 15.0713C16.0584 14.6807 16.0584 14.0476 16.4489 13.657L21.1058 9.00019H0.47998V7.00019H21.1058L16.4489 2.34334C16.0584 1.95281 16.0584 1.31965 16.4489 0.929124C16.8394 0.538599 17.4726 0.538599 17.8631 0.929124Z" fill="#753BBD"/>
-        </svg>
-      </span>
-    </a>
   </section>
 </section>

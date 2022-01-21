@@ -52,25 +52,17 @@ export class PersonalInfoComponent implements OnInit {
       employmentEndDate: '95-87-9333',
       title: 'intern'
     },
-    contact: [
-      {
-        ID: 5,
-        FirstName: 'Adrian',
-        LastName: 'Hu',
-        cellphone: '239482094',
-        email: 'feiwjfoij@gmail.com',
-        address: {
-          ID: 6,
-          addressline1: '4324 hhoiho ave',
-          addressline2: 'apt 241',
-          city: 'new york',
-          state: 'NY',
-          zipcode: '10191'
-        },
-        relationship: 'cousin',
-        emergency: true
-      }
-    ],
+    contact:{
+      personID: 3,
+      name: "Adrian",
+      phone: "567892385",
+      address: "adfasgdagea",
+      relationship: "cousin",
+      title: "",
+      ID: 8,
+      isReferrence: false,
+      isEmergency: true,
+    },
     documents: [
       {
         name: 'i20',
@@ -98,15 +90,42 @@ export class PersonalInfoComponent implements OnInit {
     ssn: new FormControl(this.user.ssn),
     driverLicense: new FormControl(this.user.driverLicense),
     driverLicense_ExpirationDate: new FormControl(this.user.driverLicense_ExpirationDate),
-    email: new FormControl(this.user.email),
-    cellphone: new FormControl(this.user.cellphone),
-    alternatePhone: new FormControl(this.user.alternatePhone)
   });
 
   addressForm = this.fb.group({
     addresses: this.fb.array(this.user.addresses.map(
       address => this.createAddress(address)))
   });
+
+  contactForm = this.fb.group({
+    ID: [this.user.ID],
+    email:[this.user.email],
+    cellphone: [this.user.cellphone],
+    alternatePhone: [this.user.alternatePhone]
+  });
+
+  employmentForm = this.fb.group({
+    ID: [this.user.ID],
+    workAuthorization: [this.user.employment.workAuthorization],
+    authorizationStartDate: [this.user.employment.authorizationStartDate],
+    authorizationEndDate: [this.user.employment.authorizationEndDate],
+    title: [this.user.employment.title],
+    employmentStartDate: [this.user.employment.employmentStartDate],
+    employmentEndDate: [this.user.employment.employmentEndDate]
+  });
+
+  emergencyForm = this.fb.group({
+    personID: [this.user.contact.personID],
+    name: [this.user.contact.name],
+    phone: [this.user.contact.phone],
+    address: [this.user.contact.address],
+    relationship: [this.user.contact.relationship],
+    title: [this.user.employment.title],
+    ID: [this.user.contact.ID],
+    isReferrence: false,
+    isEmergency: true
+  });
+
   ngOnInit(): void {
     // this.httpService.getProfile(id).subscribe(
     //   (data: any) => {
@@ -115,7 +134,7 @@ export class PersonalInfoComponent implements OnInit {
     // );
     let dob = new Date(this.user.DOB);
     let timeDiff = Math.abs(Date.now() - dob.getTime());
-    this.age = Math.floor((timeDiff / (1000 * 3600 * 24))/365.25);
+    this.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
   }
 
   //Basic Form util
@@ -129,7 +148,6 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   createAddress(address: any): FormGroup {
-    console.log(address.addressline1);
     return this.fb.group({
       ID: [address.ID],
       addressline1: [address.addressline1],
@@ -155,4 +173,13 @@ export class PersonalInfoComponent implements OnInit {
     }));
   }
 
+  submitContact(form: any): void {
+    console.log(form);
+  }
+  submitEmployment(form: any): void {
+    console.log(form);
+  }
+  submitEmergency(form: any): void {
+    console.log(form);
+  }
 }

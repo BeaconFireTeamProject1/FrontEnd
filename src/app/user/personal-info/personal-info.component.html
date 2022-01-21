@@ -44,9 +44,9 @@
     <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#ContactBackdrop">
       <h3>Contact</h3>
       <ul>
-        <li>Personal Email: {{user.email}}</li>
+        <li>Email: {{user.email}}</li>
         <li>CellPhone: {{user.cellphone}}</li>
-        <li>Work Phone: {{user.alternatePhone}}</li>
+        <li>Alternate Phone: {{user.alternatePhone}}</li>
       </ul>
       <span class="link-text">
         Edit
@@ -74,14 +74,12 @@
     </a>
       <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#EmergencyContactBackdrop">
         <h3>Emergency Contact</h3>
-        <div *ngFor="let n of em">
-          <ul *ngIf="n.emergency">
-            <li>Full Name: {{n.FirstName}}</li>
-            <li>Phone: {{n.cellphone}}</li>
-            <li>Address: {{n.address.addressline1}},{{n.address.addressline2}},
-              {{n.address.city}}, {{n.address.state}}, {{n.address.zipcode}}</li>
-          </ul>
-        </div>
+        <ul>
+          <li>Full Name: {{user.contact.name}}</li>
+          <li>Phone: {{user.contact.phone}}</li>
+          <li>Address: {{user.contact.address}}</li>
+          <li>Relationship: {{user.contact.relationship}}</li>
+        </ul>
         <span class="link-text">
           Edit
           <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,11 +125,11 @@
             <label class="input-label">Last Name</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field"  formControlName="middleName"/>
+            <input type="text" class="input-field"  formControlName="middleName" required/>
             <label class="input-label">middleName</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field"  formControlName="preferredName"/>
+            <input type="text" class="input-field"  formControlName="preferredName" required/>
             <label class="input-label">preferredName</label>
           </div>
           <div class="input">
@@ -151,24 +149,12 @@
             <label class="input-label">SSN</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field"  formControlName="driverLicense"/>
+            <input type="text" class="input-field"  formControlName="driverLicense" required/>
             <label class="input-label">Driver License Number</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field" formControlName="driverLicense_ExpirationDate"/>
+            <input type="text" class="input-field" formControlName="driverLicense_ExpirationDate" required/>
             <label class="input-label">Driver License Expiration Date</label>
-          </div>
-          <div class="input">
-            <input type="text" class="input-field"  formControlName="email" required/>
-            <label class="input-label">Email</label>
-          </div>
-          <div class="input">
-            <input type="text" class="input-field" formControlName="cellphone" required/>
-            <label class="input-label">CellPhone</label>
-          </div>
-          <div class="input">
-            <input type="text" class="input-field" formControlName="alternatePhone"/>
-            <label class="input-label">Alternate Phone</label>
           </div>
         </div>
         <div class="modal-footer">
@@ -189,10 +175,11 @@
       </div>
       <form [formGroup]="addressForm" class="card-form" (ngSubmit)="submitAddress(addressForm)">
         <div class="modal-body">
-          <div *ngFor="let address of getAddresses().controls; let i = index">
-            <p>Address {{i + 1}}</p>
+          <div formArrayName="addresses" *ngFor="let address of getAddresses().controls; let i = index">
+            <div [formGroupName]="i">
+              <p>Address {{i + 1}}</p>
             <div class="input">
-              <input type="text" class="input-field" required/>
+              <input type="text" class="input-field" formControlName="addressline1" required/>
               <label class="input-label">Line 1</label>
             </div>
             <div class="input">
@@ -200,19 +187,21 @@
               <label class="input-label">Line 2</label>
             </div>
             <div class="input">
-              <input type="password" class="input-field" formControlName="city" required/>
+              <input type="text" class="input-field" formControlName="city" required/>
               <label class="input-label">City</label>
             </div>
             <div class="input">
-              <input type="password" class="input-field" formControlName="state" required/>
+              <input type="text" class="input-field" formControlName="state" required/>
               <label class="input-label">State</label>
             </div>
             <div class="input">
-              <input type="password" class="input-field" formControlName="zipcode" required/>
+              <input type="text" class="input-field" formControlName="zipcode" required/>
               <label class="input-label">Zipcode</label>
             </div>
             <hr class='rounded'>
+            </div>
           </div>
+          <button class="btn btn-primary" (click)="addAddresses()">Add Address</button>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -230,13 +219,26 @@
         <h5 class="modal-title" id="staticBackdropLabel">Edit Contact</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save Changes</button>
-      </div>
+      <form [formGroup]="contactForm" class="card-form" (ngSubmit)='submitContact(contactForm)'>
+        <div class="modal-body">
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="email" required/>
+            <label class="input-label">Email</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="cellphone" required/>
+            <label class="input-label">CellPhone</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="alternatePhone" required/>
+            <label class="input-label">Alternate Phone</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -248,13 +250,38 @@
         <h5 class="modal-title" id="staticBackdropLabel">Edit Employment</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save Changes</button>
-      </div>
+      <form [formGroup]="employmentForm" class="card-form" (ngSubmit)='submitEmployment(employmentForm)'>
+        <div class="modal-body">
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="workAuthorization" required/>
+            <label class="input-label">Work Authorization</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="authorizationStartDate" required/>
+            <label class="input-label">Authorization Start Date (MM-DD-YY)</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="authorizationEndDate" required/>
+            <label class="input-label">>Authorization End Date (MM-DD-YY)</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="title" required/>
+            <label class="input-label">Title</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="employmentStartDate" required/>
+            <label class="input-label">Employment Start Date (MM-DD-YY)</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="employmentEndDate" required/>
+            <label class="input-label">Employment End Date (MM-DD-YY)</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>
@@ -265,13 +292,30 @@
         <h5 class="modal-title" id="staticBackdropLabel">Edit Emergency Contact</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save Changes</button>
-      </div>
+      <form [formGroup]="emergencyForm" class="card-form" (ngSubmit)='submitEmergency(emergencyForm)'>
+        <div class="modal-body">
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="name" required/>
+            <label class="input-label">Name</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="phone" required/>
+            <label class="input-label">Phone</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="address" required/>
+            <label class="input-label">Address</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="relationship" required/>
+            <label class="input-label">Relationship</label>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </div>
+      </form>
     </div>
   </div>
 </div>

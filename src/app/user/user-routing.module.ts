@@ -17,6 +17,9 @@ const userRoutes: Routes = [
       },
       {
         path: 'visa-status', component: VisaStatusComponent
+      },
+      {
+        path: 'home', redirectTo:'/user'
       }
     ]
   }

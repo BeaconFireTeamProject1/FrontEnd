@@ -15,7 +15,7 @@ export interface User {
   cellphone: string;
   alternatePhone: string;
   employment: Employment;
-  contact: Contact[];
+  contact: Contact;
   documents: Documents[];
 }
 interface Address {
@@ -36,14 +36,15 @@ interface Employment {
   title: string;
 }
 interface Contact {
-  ID: number;
-  FirstName: string;
-  LastName: string;
-  cellphone: string;
-  email: string;
-  address: Address;
+  personID: number;
+  name: string;
+  phone: string;
+  address: string;
   relationship: string;
-  emergency: boolean;
+  title: string;
+  ID: number;
+  isReferrence: boolean;
+  isEmergency: boolean;
 }
 
 interface Documents {

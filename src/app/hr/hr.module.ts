@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HireComponent } from './hire/hire.component';
 import { HrComponent } from './hr/hr.component';
@@ -20,7 +21,8 @@ import { ProfileDetailComponent } from './profile-detail/profile-detail.componen
   imports: [
     CommonModule,
     FormsModule,
-    HrRoutingModule
+    HrRoutingModule,
+    ReactiveFormsModule
   ]
 })
 export class HrModule { }
