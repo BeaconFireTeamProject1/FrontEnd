@@ -1,53 +1,54 @@
 export interface User {
-  ID: number;
   firstName: string;
   lastName: string;
-  middleName: string | null;
-  preferredName: string | null;
+  middleName: string;
   avatar: string;
-  DOB: string;
   gender: string;
-  ssn: string;
   driverLicense: string;
-  driverLicense_ExpirationDate: string;
-  addresses: Address[];
+  driverLicenseExpirationDate: string;
   email: string;
   cellphone: string;
   alternatePhone: string;
   employment: Employment;
-  contact: Contact;
+  contact: Contact[];
+  addressList: Address[];
   documents: Documents[];
+  id: string;
+  dob: string;
+  ssn: string;
 }
 interface Address {
-  ID: number;
-  addressline1: string;
-  addressline2: string;
+  addressLine1: string;
+  addressLine2: string;
   city: string;
   state: string;
   zipcode: string;
+  personId: number;
+  id: number;
 }
 
 interface Employment {
-  workAuthorization: string;
-  authorizationStartDate: string;
-  authorizationEndDate: string;
-  employmentStartDate: string;
-  employmentEndDate: string;
+  visaType: string;
+  startDate: string;
+  endDate: string;
+  visaStartDate: string;
+  visaEndDate: string;
   title: string;
 }
 interface Contact {
-  personID: number;
+  personId: number;
   name: string;
   phone: string;
   address: string;
   relationship: string;
   title: string;
-  ID: number;
+  id: number;
   isReferrence: boolean;
   isEmergency: boolean;
 }
 
 interface Documents {
-  name: string;
-  icon: string;
+  title: string;
+  path: string;
+  comment: string;
 }

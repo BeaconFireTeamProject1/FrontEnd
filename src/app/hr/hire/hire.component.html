@@ -1,5 +1,4 @@
 <div class="container">
-	<!-- code here -->
 	<div class="card">
 		<div class="card-image">
 			<h2 class="card-heading">
@@ -20,3 +19,25 @@
 		</div>
 	</div>
 </div>
+<!-- <div class="container">
+  <h2>Personal Profiles <small>summary</small></h2>
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">#</div>
+      <div class="col col-2">Name</div>
+      <div class="col col-3">Work Authorizatoin</div>
+      <div class="col col-4">Application type</div>
+      <div class="col col-5">Status</div>
+    </li>
+    <div *ngFor="let p of profiles; let i = index;">
+      <li class="table-row">
+        <div class="col col-1" data-label="Employee Number">{{p.ID}} / {{profiles.length}}</div>
+        <div class="col col-2" data-label="Legal Full Name">{{p.name}}</div>
+        <div class="col col-3" data-label="SSN">{{p.SSN}}</div>
+        <div class="col col-4" data-label="Starting Date">{{p.date}}</div>
+        <div class="col col-5" data-label="Visa Status">{{p.visa}}</div>
+        <a [routerLink]="['/hr/person-detail/', p.ID]" routerLinkActive="active" class="btn btn-light">See details</a>
+      </li>
+    </div>
+  </ul>
+</div> -->

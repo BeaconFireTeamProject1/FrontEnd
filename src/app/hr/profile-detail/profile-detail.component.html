@@ -5,13 +5,12 @@
       <img src={{user.avatar}} class="card__image" alt="" />
       <ul>
         <h4>{{user.firstName}} <div *ngIf="user.middleName != null">{{user.middleName}}.</div> {{user.lastName}}</h4>
-        <li *ngIf="user.preferredName != null">Preferred Name: {{user.preferredName}}</li>
-        <li>Date of Birth: {{user.DOB}}</li>
+        <li>Date of Birth: {{user.dob}}</li>
         <li>Age: {{age}}</li>
         <li>Gender: {{user.gender}}</li>
         <li>SSN: {{user.ssn}}</li>
         <li>Driver License: {{user.driverLicense}}</li>
-        <li>Driver License exp: {{user.driverLicense_ExpirationDate}}</li>
+        <li>Driver License exp: {{user.driverLicenseExpirationDate}}</li>
       </ul>
     </div>
   </section>
@@ -19,12 +18,12 @@
     <div class="data-card">
       <h3>Address</h3>
       <ul>
-        <li>Primary Address: {{user.addresses[0].addressline1}}, {{user.addresses[0].addressline2}},
-            {{user.addresses[0].city}}, {{user.addresses[0].state}}, {{user.addresses[0].zipcode}}</li>
-        <div *ngIf="user.addresses[1] != null">
+        <li>Primary Address: {{user.addressList[0].addressLine1}}, {{user.addressList[0].addressLine2}},
+            {{user.addressList[0].city}}, {{user.addressList[0].state}}, {{user.addressList[0].zipcode}}</li>
+        <div *ngIf="user.addressList[1] != null">
           <li>
-            Secondary Address: {{user.addresses[1].addressline1}}, {{user.addresses[1].addressline2}},
-            {{user.addresses[1].city}}, {{user.addresses[1].state}}, {{user.addresses[1].zipcode}}
+            Secondary Address: {{user.addressList[1].addressLine1}}, {{user.addressList[1].addressLine2}},
+            {{user.addressList[1].city}}, {{user.addressList[1].state}}, {{user.addressList[1].zipcode}}
           </li>
         </div>
       </ul>
@@ -42,29 +41,29 @@
     <div class="data-card">
       <h3>Employment</h3>
       <ul>
-        <li>Work Authorization: {{user.employment.workAuthorization}} </li>
-        <li>From {{user.employment.authorizationStartDate}} till {{user.employment.authorizationEndDate}}</li>
+        <li>Work Authorization: {{user.employment.visaType}} </li>
+        <li>From {{user.employment.visaStartDate}} till {{user.employment.visaEndDate}}</li>
         <li>Employment Title: {{user.employment.title}}</li>
-        <li>From {{user.employment.employmentStartDate}} till {{user.employment.employmentEndDate}}</li>
+        <li>From {{user.employment.startDate}} till {{user.employment.endDate}}</li>
       </ul>
     </div>
     <div class="data-card">
         <h3>Emergency Contact</h3>
         <ul>
-          <li>Full Name: {{user.contact.name}}</li>
-          <li>Phone: {{user.contact.phone}}</li>
-          <li>Address: {{user.contact.address}}</li>
-          <li>Relationship: {{user.contact.relationship}}</li>
+          <li>Full Name: {{user.contact[0].name}}</li>
+          <li>Phone: {{user.contact[0].phone}}</li>
+          <li>Address: {{user.contact[0].address}}</li>
+          <li>Relationship: {{user.contact[0].relationship}}</li>
         </ul>
       </div>
   </section>
   <section>
     <div class="data-card">
+      <h3>Documents</h3>
       <div *ngFor="let d of user.documents">
-        <h3>Documents</h3>
         <ul>
-          <li>Icon: {{d.name}}</li>
-          <li>Mame: {{d.icon}}</li>
+          <li>Icon: {{d.title}}</li>
+          <li>Comment: {{d.comment}}</li>
         </ul>
       </div>
     </div>

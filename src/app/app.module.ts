@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { RedirectGuard } from './security/redirectGuard';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     AppRoutingModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [RedirectGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

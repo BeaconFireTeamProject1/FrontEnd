@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-user',
@@ -8,9 +9,15 @@ import { Location } from '@angular/common';
 })
 export class UserComponent implements OnInit {
 
-  constructor(private loc: Location) { }
+  public id: number = 0;
+
+  constructor(private loc: Location, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.id = params['id'];
+    });
+    console.log(this.id);
   }
   backClicked() {
     this.loc.back();

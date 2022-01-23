@@ -5,13 +5,12 @@
       <img src={{user.avatar}} class="card__image" alt="" />
       <ul>
         <h4>{{user.firstName}} <div *ngIf="user.middleName != null">{{user.middleName}}.</div> {{user.lastName}}</h4>
-        <li *ngIf="user.preferredName != null">Preferred Name: {{user.preferredName}}</li>
-        <li>Date of Birth: {{user.DOB}}</li>
+        <li>Date of Birth: {{user.dob}}</li>
         <li>Age: {{age}}</li>
         <li>Gender: {{user.gender}}</li>
         <li type=password>SSN: {{user.ssn}}</li>
         <li>Driver License: {{user.driverLicense}}</li>
-        <li>Driver License exp: {{user.driverLicense_ExpirationDate}}</li>
+        <li>Driver License exp: {{user.driverLicenseExpirationDate}}</li>
       </ul>
       <span class="link-text">
         Edit
@@ -25,12 +24,12 @@
     <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#AddressBackdrop">
       <h3>Address</h3>
       <ul>
-        <li>Primary Address: {{user.addresses[0].addressline1}}, {{user.addresses[0].addressline2}},
-            {{user.addresses[0].city}}, {{user.addresses[0].state}}, {{user.addresses[0].zipcode}}</li>
-        <div *ngIf="user.addresses[1] != null">
+        <li>Primary Address: {{user.addressList[0].addressLine1}}, {{user.addressList[0].addressLine2}},
+            {{user.addressList[0].city}}, {{user.addressList[0].state}}, {{user.addressList[0].zipcode}}</li>
+        <div *ngIf="user.addressList[1] != null">
           <li>
-            Secondary Address: {{user.addresses[1].addressline1}}, {{user.addresses[1].addressline2}},
-            {{user.addresses[1].city}}, {{user.addresses[1].state}}, {{user.addresses[1].zipcode}}
+            Secondary Address: {{user.addressList[1].addressLine1}}, {{user.addressList[1].addressLine2}},
+            {{user.addressList[1].city}}, {{user.addressList[1].state}}, {{user.addressList[1].zipcode}}
           </li>
         </div>
       </ul>
@@ -60,10 +59,10 @@
     <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#EmploymentBackDrop">
       <h3>Employment</h3>
       <ul>
-        <li>Work Authorization: {{user.employment.workAuthorization}} </li>
-        <li>From {{user.employment.authorizationStartDate}} till {{user.employment.authorizationEndDate}}</li>
+        <li>Work Authorization: {{user.employment.visaType}} </li>
+        <li>From {{user.employment.visaStartDate}} till {{user.employment.visaEndDate}}</li>
         <li>Employment Title: {{user.employment.title}}</li>
-        <li>From {{user.employment.employmentStartDate}} till {{user.employment.employmentEndDate}}</li>
+        <li>From {{user.employment.startDate}} till {{user.employment.endDate}}</li>
       </ul>
       <span class="link-text">
         Edit
@@ -74,12 +73,14 @@
     </a>
       <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#EmergencyContactBackdrop">
         <h3>Emergency Contact</h3>
+        <div *ngFor="let d of user.contact">
         <ul>
-          <li>Full Name: {{user.contact.name}}</li>
-          <li>Phone: {{user.contact.phone}}</li>
-          <li>Address: {{user.contact.address}}</li>
-          <li>Relationship: {{user.contact.relationship}}</li>
+          <li>Full Name: {{d.name}}</li>
+          <li>Phone: {{d.phone}}</li>
+          <li>Address: {{d.address}}</li>
+          <li>Relationship: {{d.relationship}}</li>
         </ul>
+      </div>
         <span class="link-text">
           Edit
           <svg width="25" height="16" viewBox="0 0 25 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -90,11 +91,11 @@
   </section>
   <section>
     <a href="#" class="data-card" type="button" data-bs-toggle="modal" data-bs-target="#DocBackdrop">
-      <div *ngFor="let d of doc">
-        <h3>Documents</h3>
+      <h3>Documents</h3>
+      <div *ngFor="let d of user.documents">
         <ul>
-          <li>Icon: {{d.name}}</li>
-          <li>Mame: {{d.icon}}</li>
+          <li>Name: {{d.title}}</li>
+          <li>Comment: {{d.comment}}</li>
         </ul>
     </div>
       <span class="link-text">
@@ -129,15 +130,11 @@
             <label class="input-label">middleName</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field"  formControlName="preferredName" required/>
-            <label class="input-label">preferredName</label>
-          </div>
-          <div class="input">
             <input type="text" class="input-field"  formControlName="avatar"required/>
             <label class="input-label">Avatar Link</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field" formControlName="DOB" required/>
+            <input type="text" class="input-field" formControlName="dob" required/>
             <label class="input-label">Date of Birth (MM-DD-YY)</label>
           </div>
           <div class="input">
@@ -253,15 +250,15 @@
       <form [formGroup]="employmentForm" class="card-form" (ngSubmit)='submitEmployment(employmentForm)'>
         <div class="modal-body">
           <div class="input">
-            <input type="text" class="input-field"  formControlName="workAuthorization" required/>
+            <input type="text" class="input-field"  formControlName="visaType" required/>
             <label class="input-label">Work Authorization</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field" formControlName="authorizationStartDate" required/>
+            <input type="text" class="input-field" formControlName="visaStartDate" required/>
             <label class="input-label">Authorization Start Date (MM-DD-YY)</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field" formControlName="authorizationEndDate" required/>
+            <input type="text" class="input-field" formControlName="visaEndDate" required/>
             <label class="input-label">>Authorization End Date (MM-DD-YY)</label>
           </div>
           <div class="input">
@@ -269,11 +266,11 @@
             <label class="input-label">Title</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field" formControlName="employmentStartDate" required/>
+            <input type="text" class="input-field" formControlName="startDate" required/>
             <label class="input-label">Employment Start Date (MM-DD-YY)</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field" formControlName="employmentEndDate" required/>
+            <input type="text" class="input-field" formControlName="endDate" required/>
             <label class="input-label">Employment End Date (MM-DD-YY)</label>
           </div>
         </div>

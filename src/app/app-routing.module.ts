@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { RedirectGuard } from './security/redirectGuard';
 
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
@@ -12,6 +13,13 @@ const routes: Routes = [
   { path: "hr",
     loadChildren: () => import('./hr/hr.module').then(m => m.HrModule),
     data: {preload: true}},
+  { path: 'login',
+    canActivate: [RedirectGuard],
+    component: RedirectGuard,
+    data: {
+      externalUrl: 'http://localhost:9999/auth/login'
+    }
+  },
   { path: '', component: HomePageComponent },
   { path: '**', component: PageNotFoundComponent }
 ];

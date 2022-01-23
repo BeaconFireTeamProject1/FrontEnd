@@ -1,5 +1,6 @@
 import { Component, ContentChildDecorator, OnInit } from '@angular/core';
 import {
+  ActivatedRoute,
   ActivatedRouteSnapshot
 } from '@angular/router';
 import { HttpServiceService } from 'src/app/services/http-service.service';
@@ -13,19 +14,22 @@ import { User } from 'src/app/user/user';
 })
 export class ProfileDetailComponent implements OnInit {
 
-  constructor(private httpService: HttpServiceService, private route: ActivatedRouteSnapshot) { }
+  constructor(private httpService: HttpServiceService, private route: ActivatedRoute) { }
 
-  private id = this.route.paramMap.get('id');
+  public id: string | null = '0';
   public user!: User;
   public contactPerson!: Person;
   public age = 0;
   ngOnInit(): void {
+    this.route.paramMap.subscribe(paramMap => {
+      this.id = paramMap.get('id');
+    })
     this.httpService.getProfile(this.id).subscribe(
       (data: any) => {
         this.user = JSON.parse(data);
       }
     );
-    let dob = new Date(this.user.DOB);
+    let dob = new Date(this.user.dob);
     console.log(dob);
     let timeDiff = Math.abs(Date.now() - dob.getTime());
     this.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);

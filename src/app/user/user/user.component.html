@@ -6,9 +6,9 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link active" routerLink="home" routerLinkActive="active">User Home</a>
-        <a class="nav-link" routerLink="personal-info" routerLinkActive="active">Personal Information</a>
-        <a class="nav-link" routerLink="visa-status" routerLinkActive="active">Visa Status Management</a>
+        <a class="nav-link active" routerLink="home" [queryParams]="{id: id}" routerLinkActive="active">User Home</a>
+        <a class="nav-link" routerLink="personal-info" [queryParams]="{id: id}" routerLinkActive="active">Personal Information</a>
+        <a class="nav-link" routerLink="visa-status" [queryParams]="{id: id}" routerLinkActive="active">Visa Status Management</a>
       </div>
     </div>
   </div>

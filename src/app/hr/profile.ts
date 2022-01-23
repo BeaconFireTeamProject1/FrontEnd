@@ -1,7 +1,7 @@
 export interface Profile {
-  id: number;
   name: string;
-  ssn: string;
-  startingDate: string;
-  visaStatus: string;
+  date: string;
+  visa: string;
+  ID: number;
+  SSN: string;
 }

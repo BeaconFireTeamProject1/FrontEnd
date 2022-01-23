@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" routerLink="home" routerLinkActive="active">HR Home</a>
-        <a class="nav-link" routerLink="personal-profile" routerLinkActive="active">Profiles</a>
+        <a class="nav-link" routerLink="personal-profile" [queryParams]="{index: 0, selected: 2}" routerLinkActive="active">Profiles</a>
         <a class="nav-link" routerLink="visa-status-management" routerLinkActive="active">Visa Status Management</a>
         <a class="nav-link" routerLink="hire" routerLinkActive="active">Hire</a>
       </div>

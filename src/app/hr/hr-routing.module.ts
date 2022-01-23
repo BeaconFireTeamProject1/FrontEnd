@@ -16,12 +16,6 @@ const routes: Routes = [
       },
       {
         path: 'personal-profile', component: PersonalProfileComponent,
-        children: [
-          {
-            path: ':id',
-            component: ProfileDetailComponent
-          }
-        ]
       },
       {
         path: 'visa-status-management', component: VisaStatusManagementComponent
@@ -31,6 +25,10 @@ const routes: Routes = [
       },
       {
         path: 'home', redirectTo: '/hr'
+      },
+      {
+        path: 'person-detail/:id',
+        component: ProfileDetailComponent
       }
     ]
   }

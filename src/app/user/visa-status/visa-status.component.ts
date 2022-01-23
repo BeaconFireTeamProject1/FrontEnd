@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-visa-status',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./visa-status.component.css']
 })
 export class VisaStatusComponent implements OnInit {
-
-  constructor() { }
+  public id: number = 0;
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      console.log(params['id']);
+      this.id = params['id'];
+    });
   }
 
 }

@@ -1,3 +1,7 @@
+<div class="input-group flex-nowrap">
+  <span class="input-group-text" id="addon-wrapping">Search</span>
+  <input type="text" class="form-control" aria-label="Username" aria-describedby="addon-wrapping" [(ngModel)]="search">
+</div>
 <div class="container">
   <h2>Personal Profiles <small>summary</small></h2>
   <ul class="responsive-table">
@@ -7,16 +11,42 @@
       <div class="col col-3">SSN</div>
       <div class="col col-4">Starting Date</div>
       <div class="col col-5">Visa Status</div>
+      <div class="col col-6"></div>
     </li>
     <div *ngFor="let p of profiles; let i = index;">
-      <li class="table-row">
-        <div class="col col-1" data-label="Employee Number">{{p.id + 1}} / {{profiles.length}}</div>
-        <div class="col col-2" data-label="Legal Full Name">{{p.name}}</div>
-        <div class="col col-3" data-label="SSN">{{p.ssn}}</div>
-        <div class="col col-4" data-label="Starting Date">{{p.startingDate}}</div>
-        <div class="col col-5" data-label="Visa Status">{{p.visaStatus}}</div>
-        <a [routerLink]="[p.id]" routerLinkActive="active"></a>
-      </li>
+      <div *ngIf="i < (ind + 1) * selected && i >= ind * selected && (search.length == 0) ? true : (p.SSN.includes(search) || p.name.includes(search))">
+        <li class="table-row">
+          <div class="col col-1" data-label="Employee Number">{{p.ID}} / {{profiles.length}}</div>
+          <div class="col col-2" data-label="Legal Full Name">{{p.name}}</div>
+          <div class="col col-3" data-label="SSN">{{p.SSN}}</div>
+          <div class="col col-4" data-label="Starting Date">{{p.date}}</div>
+          <div class="col col-5" data-label="Visa Status">{{p.visa}}</div>
+          <a [routerLink]="['/hr/person-detail/', p.ID]" routerLinkActive="active" class="btn btn-light">See details</a>
+        </li>
+      </div>
     </div>
   </ul>
 </div>
+<div class="container-nav">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination">
+      <li class="page-item">
+        <a class="page-link" routerLink="/hr/personal-profile" [queryParams]="{index: 0, selected: selected}" aria-label="First Page">
+          <span aria-hidden="true">First Page</span>
+        </a>
+      </li>
+      <div *ngFor="let c of createRange(); let i = index">
+        <li class="page-item"><a class="page-link" routerLink="/hr/personal-profile" [queryParams]="{index: i, selected: selected}">{{i + 1}}</a></li>
+      </div>
+    </ul>
+  </nav>
+  <div class="input-group mb-3">
+    <label class="input-group-text" for="inputGroupSelect01">Options</label>
+    <select class="form-select" id="inputGroupSelect01" [(ngModel)]="selected">
+      <option value="1">One Item / page</option>
+      <option selected value="2">Two Item / page</option>
+      <option value="5">Five Item / page</option>
+    </select>
+  </div>
+</div>
+
