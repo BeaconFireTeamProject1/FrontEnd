@@ -1,13 +1,25 @@
 <div class="container">
-  <h3>Visa Status</h3>
-  <div class="item1">
-    <h4>Current Status</h4>
-    <p>Visa here: approved or not</p>
-    <h4>Next Step: </h4>
-    <p>First Step</p>
-    <form action="/action_page.php">
-      <input type="file" id="myFile" name="filename">
-      <input type="submit">
-    </form>
+  <div class="items">
+    <h3 style="color: green">Visa Status</h3>
+    <div class="item1">
+      <h4>Current Status</h4>
+      <p >Visa here: approved or not</p>
+      <h4>Next Step: </h4>
+      <p>First Step</p>
+      <form action="/action_page.php" [formGroup]="uploadFileForm" (ngSubmit)="upload()">
+        <input type="file" id="myFile" name="filename" (change)="onFileSelect($event)"  formControlName="file">
+        <input type="submit">
+      </form>
+    </div>
+  </div>
+  <div class="items">
+    <h3>Uploaded Document</h3>
+    <div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-offset="0" class="scrollspy-example" tabindex="0">
+      <div *ngFor="let n of user.documents; let i = index">
+        <a href="{{n.path}}">
+          <img alt="Qries" src="src/app/Document-Icon-Graphics.jpg" width="150" height="70">
+        </a>
+      </div>
+    </div>
   </div>
 </div>

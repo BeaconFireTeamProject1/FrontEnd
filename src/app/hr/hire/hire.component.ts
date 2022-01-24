@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { HttpServiceService } from 'src/app/services/http-service.service';
 
 @Component({
   selector: 'app-hire',
@@ -8,7 +9,7 @@ import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 })
 export class HireComponent implements OnInit {
 
-  constructor() { }
+  constructor(private httpService: HttpServiceService) { }
 
   singUpform = new FormGroup({
     email: new FormControl('')
@@ -18,7 +19,7 @@ export class HireComponent implements OnInit {
   }
 
   onSubmit(form: any): void {
-    console.log(form);
+    this.httpService.sendEmail(form);
   }
 
 }

@@ -91,12 +91,12 @@ export class PersonalInfoComponent implements OnInit {
         let dob = new Date(this.user.dob);
         let timeDiff = Math.abs(Date.now() - dob.getTime());
         this.age = Math.floor((timeDiff / (1000 * 3600 * 24)) / 365.25);
-        this.basicForm = new FormGroup({
-          ID: new FormControl(this.user.id),
+        this.basicForm = this.fb.group({
+          id: new FormControl(this.user.id),
           firstName: new FormControl(this.user.firstName),
           lastName: new FormControl(this.user.lastName),
           middleName: new FormControl(this.user.middleName),
-          preferredName: new FormControl('user1'),
+          preferredName: new FormControl(''),
           avatar: new FormControl(this.user.avatar),
           dob: new FormControl(this.user.dob),
           gender: new FormControl(this.user.gender),
@@ -109,9 +109,10 @@ export class PersonalInfoComponent implements OnInit {
             address => this.createAddress(address)))
         });
         this.contactForm = this.fb.group({
+          cellPhone: [this.user.cellPhone],
+          workPhone: [this.user.alternatePhone],
           email:[this.user.email],
-          cellphone: [this.user.cellphone],
-          alternatePhone: [this.user.alternatePhone]
+          workEmail: ['']
         });
         this.employmentForm = this.fb.group({
           visaType: [this.user.employment.visaType],
@@ -129,6 +130,8 @@ export class PersonalInfoComponent implements OnInit {
           relationship: [this.user.contact[0].relationship],
           title: [this.user.contact[0].title],
           id: [this.user.contact[0].id],
+          isReference: [this.user.contact[0].isReferrence],
+          isEmergency: [true]
         });
       }
     );
@@ -137,21 +140,24 @@ export class PersonalInfoComponent implements OnInit {
   //Basic Form util
   submitBasic(form: any): void {
     this.httpService.updateProfile(this.user.id, form);
-    window.location.reload();
+    // window.location.reload();
   }
 
   //Address form util
   submitAddress(form: any): void {
-    console.log(form);
+    this.httpService.updateAddress(this.user.id, form);
+    window.location.reload();
   }
 
   createAddress(address: any): FormGroup {
     return this.fb.group({
-      addressline1: [address.addressLine1],
-      addressline2: [address.addressLine2],
+      addressLine1: [address.addressLine1],
+      addressLine2: [address.addressLine2],
       city: [address.city],
       state: [address.state],
-      zipcode: [address.zipcode]
+      zipcode: [address.zipcode],
+      personId: [this.user.id],
+      id: [address.id]
     });
   }
 
@@ -170,12 +176,15 @@ export class PersonalInfoComponent implements OnInit {
   }
 
   submitContact(form: any): void {
-    console.log(form);
+    this.httpService.updateContact(this.user.id, form);
+    //window.location.reload();
   }
   submitEmployment(form: any): void {
-    console.log(form);
+    this.httpService.updateEmployee(this.user.id, form);
+    window.location.reload();
   }
   submitEmergency(form: any): void {
-    console.log(form);
+    this.httpService.updateEmergency(this.user.id, form);
+    //window.location.reload();
   }
 }

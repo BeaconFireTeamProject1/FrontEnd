@@ -7,13 +7,13 @@
 		</div>
 		<form class="card-form" [formGroup]="singUpform" (ngSubmit)="onSubmit(singUpform)">
 			<div class="input">
-				<input type="text" class="input-field" required/>
+				<input type="text" class="input-field" formControlName="email" required/>
 				<label class="input-label">Employee Email</label>
 			</div>
+      <div class="action">
+        <button class="action-button" type="submit">Get started</button>
+      </div>
 		</form>
-    <div class="action">
-      <button class="action-button" type="submit">Get started</button>
-    </div>
 		<div class="card-info">
 			<p>Sending to this email to sign up</p>
 		</div>

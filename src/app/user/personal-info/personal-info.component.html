@@ -44,7 +44,7 @@
       <h3>Contact</h3>
       <ul>
         <li>Email: {{user.email}}</li>
-        <li>CellPhone: {{user.cellphone}}</li>
+        <li>CellPhone: {{user.cellPhone}}</li>
         <li>Alternate Phone: {{user.alternatePhone}}</li>
       </ul>
       <span class="link-text">
@@ -94,8 +94,10 @@
       <h3>Documents</h3>
       <div *ngFor="let d of user.documents">
         <ul>
+          <a href="{{d.path}}">
+            <img alt="Qries" src="src/app/Document-Icon-Graphics.jpg" width="150" height="70">
+          </a>
           <li>Name: {{d.title}}</li>
-          <li>Comment: {{d.comment}}</li>
         </ul>
     </div>
       <span class="link-text">
@@ -128,6 +130,10 @@
           <div class="input">
             <input type="text" class="input-field"  formControlName="middleName" required/>
             <label class="input-label">middleName</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field"  formControlName="preferredName" required/>
+            <label class="input-label">preferredName</label>
           </div>
           <div class="input">
             <input type="text" class="input-field"  formControlName="avatar"required/>
@@ -176,11 +182,11 @@
             <div [formGroupName]="i">
               <p>Address {{i + 1}}</p>
             <div class="input">
-              <input type="text" class="input-field" formControlName="addressline1" required/>
+              <input type="text" class="input-field" formControlName="addressLine1" required/>
               <label class="input-label">Line 1</label>
             </div>
             <div class="input">
-              <input type="text" class="input-field" formControlName="addressline2" required/>
+              <input type="text" class="input-field" formControlName="addressLine2" required/>
               <label class="input-label">Line 2</label>
             </div>
             <div class="input">
@@ -219,16 +225,20 @@
       <form [formGroup]="contactForm" class="card-form" (ngSubmit)='submitContact(contactForm)'>
         <div class="modal-body">
           <div class="input">
+            <input type="text" class="input-field" formControlName="cellPhone" required/>
+            <label class="input-label">CellPhone</label>
+          </div>
+          <div class="input">
+            <input type="text" class="input-field" formControlName="workPhone" required/>
+            <label class="input-label">Alternate Phone</label>
+          </div>
+          <div class="input">
             <input type="text" class="input-field"  formControlName="email" required/>
             <label class="input-label">Email</label>
           </div>
           <div class="input">
-            <input type="text" class="input-field" formControlName="cellphone" required/>
-            <label class="input-label">CellPhone</label>
-          </div>
-          <div class="input">
-            <input type="text" class="input-field" formControlName="alternatePhone" required/>
-            <label class="input-label">Alternate Phone</label>
+            <input type="text" class="input-field" formControlName="workEmail" required/>
+            <label class="input-label">Work Email</label>
           </div>
         </div>
         <div class="modal-footer">
@@ -317,7 +327,7 @@
   </div>
 </div>
 
-<div class="modal fade" id="DocBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="DocBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -333,4 +343,4 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->

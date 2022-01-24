@@ -7,7 +7,7 @@ export interface User {
   driverLicense: string;
   driverLicenseExpirationDate: string;
   email: string;
-  cellphone: string;
+  cellPhone: string;
   alternatePhone: string;
   employment: Employment;
   contact: Contact[];

@@ -1,1 +1,81 @@
-<p>visa-status-management works!</p>
+<div class="container">
+  <h2>Visa Status Management</h2>
+  <ul class="responsive-table">
+    <li class="table-header">
+      <div class="col col-1">#</div>
+      <div class="col col-2">Legal Full Name</div>
+      <div class="col col-3">Work Authorization</div>
+      <div class="col col-4">Expiration Date</div>
+      <div class="col col-5">Day Left</div>
+      <div class="col col-6">Expend</div>
+    </li>
+    <div *ngFor="let p of visaList; let i = index;">
+      <li class="table-row">
+        <div class="col col-1" data-label="id">{{p.ID}} / {{visaList.length}}</div>
+        <div class="col col-2" data-label="name">{{p.name}}</div>
+        <div class="col col-3" data-label="workAuthorization">{{p.workAuthorization}}</div>
+        <div class="col col-4" data-label="expDate">{{p.ExpirationDate}}</div>
+        <div class="col col-5" data-label="dayLeft">{{p.dayLeft}}</div>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample{{i}}" role="button" aria-expanded="false" aria-controls="collapseExample">
+          Options
+        </a>
+      </li>
+      <div class="collapse" id="collapseExample{{i}}">
+        <div class="card card-body">
+          <div>
+            <li class="table-row">
+              <div class="col coll-1">
+                <ul class="list-group">
+                  <li class="list-group-item">Name: {{visaDetailList[i].name}}</li>
+                  <li class="list-group-item">Visa: {{visaDetailList[i].visaType}}</li>
+                  <li class="list-group-item">StartDate: {{visaDetailList[i].startDate}}</li>
+                  <li class="list-group-item">EndDate: {{visaDetailList[i].endDate}}</li>
+                </ul>
+              </div>
+              <div class="col coll-2" >
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <h5>Documents</h5>
+                    <div *ngFor="let d of visaDetailList[i].documentList">
+                      <ul>
+                        <a href="{{d.path}}">
+                          <img alt="Qries" src="src/app/Document-Icon-Graphics.jpg" width="150" height="70">
+                        </a>
+                        <li>Name: {{d.title}}</li>
+                      </ul>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <h5>Next Step:</h5>
+                    <span style="color:blueviolet">{{visaDetailList[i].type}}</span>
+                  </li>
+                </ul>
+              </div>
+              <div class="col coll-3">
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <div class="mb-3">
+                      <label for="exampleFormControlTextarea1" class="form-label">Comments</label>
+                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    </div>
+                  </li>
+                  <li class="list-group-item">
+                    <a class="btn btn-light" role="button" aria-expanded="false" aria-controls="collapseExample" style="color:red" type="button" (click)="setRes('reject', p.ID)">
+                      Reject
+                    </a>
+                    <a class="btn btn-light" role="button" aria-expanded="false" aria-controls="collapseExample" style="color:green" type="button" (click)="setRes('approve', p.ID)">
+                      Approve
+                    </a>
+                  </li>
+                </ul>
+                <div *ngIf="message" aria-live="polite" aria-atomic="true" class="position-relative">
+                  <h5 style="color:greenyellow;">Review Sent!</h5>
+                </div>
+            </div>
+            </li>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ul>
+</div>
